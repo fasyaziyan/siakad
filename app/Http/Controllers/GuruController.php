@@ -26,41 +26,43 @@ class GuruController extends Controller
     }
 
     public function create(){
-        $mapel = Mapel::get();
-        $kelas = Kelas::get();
-        return view('guru.create', compact('mapel'));
+        return view('guru.create');
     }
 
     public function store(Request $request){
         $request->validate(
             [
-            'nip' => 'required|numeric',
-            'nama_guru' => 'required',
-            'tempat_lahir' => 'required',
-            'alamat' => 'required',
-            'telepon' => 'required|numeric:11',
-            'jenis_kelamin' => 'required',
-            'agama' => 'required',
-            'pendidikan' => 'required',
-            'email' => 'required|email',
-            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'nip' => 'required|numeric',
+                'nama_guru' => 'required',
+                'tempat_lahir' => 'required',
+                'alamat' => 'required',
+                'telepon' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:15|min:10',
+                'jenis_kelamin' => 'required',
+                'tanggal_lahir' => 'required',
+                'agama' => 'required',
+                'pendidikan' => 'required',
+                'email' => 'required|email:rfc,dns',
+                'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ],
             [
-            'nip.required' => 'NIP harus diisi!',
-            'nip.numeric' => 'NIP harus berupa angka!',
-            'nama_guru.required' => 'Nama harus diisi!',
-            'tempat_lahir.required' => 'Tempat lahir harus diisi!',
-            'alamat.required' => 'Alamat harus diisi!',
-            'telepon.required' => 'Telepon harus diisi!',
-            'telepon.numeric' => 'Telepon harus berupa angka!',
-            'agama.required' => 'Agama harus diisi!',
-            'pendidikan.required' => 'Pendidikan harus diisi!',
-            'email.required' => 'Email harus diisi!',
-            'email.email' => 'Email harus valid!',
-            'foto.image' => 'Foto harus berupa gambar!',
-            'foto.mimes' => 'Foto harus berupa gambar!',
-            'foto.max' => 'Foto maksimal 2 Mb',
-            'jenis_kelamin.required' => 'Jenis kelamin harus diisi!',
+                'nip.required' => 'NIP harus diisi!',
+                'nip.numeric' => 'NIP harus berupa angka!',
+                'nama_guru.required' => 'Nama harus diisi!',
+                'tempat_lahir.required' => 'Tempat lahir harus diisi!',
+                'alamat.required' => 'Alamat harus diisi!',
+                'telepon.required' => 'Telepon harus diisi!',
+                'telepon.regex' => 'Telepon harus berupa angka!',
+                'telepon.max' => 'Telepon maksimal 15 karakter!',
+                'telepon.min' => 'Telepon minimal 10 karakter!',
+                'agama.required' => 'Agama harus diisi!',
+                'pendidikan.required' => 'Pendidikan harus diisi!',
+                'email.required' => 'Email harus diisi!',
+                'email.email' => 'Email harus valid!',
+                'foto.image' => 'Foto harus berupa gambar!',
+                'foto.mimes' => 'Foto harus berupa gambar!',
+                'foto.max' => 'Foto maksimal 2 Mb',
+                'jenis_kelamin.required' => 'Jenis kelamin harus diisi!',
+                'tanggal_lahir.required' => 'Tanggal lahir harus diisi!',
             ]
         );
         $data = $request->all();
@@ -107,29 +109,34 @@ class GuruController extends Controller
 
         $request->validate(
             [
-            'nama_guru' => 'required',
-            'tempat_lahir' => 'required',
-            'alamat' => 'required',
-            'telepon' => 'required|numeric',
-            'agama' => 'required',
-            'pendidikan' => 'required',
-            'email' => 'required|email',
-            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'nama_guru' => 'required',
+                'tempat_lahir' => 'required',
+                'alamat' => 'required',
+                'telepon' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:15|min:10',
+                'jenis_kelamin' => 'required',
+                'tanggal_lahir' => 'required',
+                'agama' => 'required',
+                'pendidikan' => 'required',
+                'email' => 'required|email:rfc,dns',
+                'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ],
             [
-            'nama_guru.required' => 'Nama harus diisi!',
-            'tempat_lahir.required' => 'Tempat lahir harus diisi!',
-            'alamat.required' => 'Alamat harus diisi!',
-            'telepon.required' => 'Telepon harus diisi!',
-            'telepon.numeric' => 'Telepon harus berupa angka!',
-            'telepon.max' => 'Telepon maksimal 15 karakter!',
-            'agama.required' => 'Agama harus diisi!',
-            'pendidikan.required' => 'Pendidikan harus diisi!',
-            'email.required' => 'Email harus diisi!',
-            'email.email' => 'Email harus valid!',
-            'foto.image' => 'Foto harus berupa gambar!',
-            'foto.mimes' => 'Foto harus berupa gambar!',
-            'foto.max' => 'Foto maksimal 2 Mb',
+                'nama_guru.required' => 'Nama harus diisi!',
+                'tempat_lahir.required' => 'Tempat lahir harus diisi!',
+                'alamat.required' => 'Alamat harus diisi!',
+                'telepon.required' => 'Telepon harus diisi!',
+                'telepon.regex' => 'Telepon harus berupa angka!',
+                'telepon.max' => 'Telepon maksimal 15 karakter!',
+                'telepon.min' => 'Telepon minimal 10 karakter!',
+                'agama.required' => 'Agama harus diisi!',
+                'pendidikan.required' => 'Pendidikan harus diisi!',
+                'email.required' => 'Email harus diisi!',
+                'email.email' => 'Email harus valid!',
+                'foto.image' => 'Foto harus berupa gambar!',
+                'foto.mimes' => 'Foto harus berupa gambar!',
+                'foto.max' => 'Foto maksimal 2 Mb',
+                'jenis_kelamin.required' => 'Jenis kelamin harus diisi!',
+                'tanggal_lahir.required' => 'Tanggal lahir harus diisi!',
             ]
         );
 

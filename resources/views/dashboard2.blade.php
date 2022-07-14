@@ -33,7 +33,6 @@
         </div>
     </div>
 </div>
-<div class="row"></div>
 <div class="card">
     <div class="card-body">
         <div class="chartjs-size-monitor">
@@ -95,5 +94,5 @@
     setInterval(function () {
         $('#date_time').load(' #date_time');
     }, 60000);
-    </script>
+</script>
 @endsection

@@ -6,6 +6,7 @@ use App\Models\Guru;
 use App\Models\Siswa;
 use App\Models\Tingkat;
 use App\Models\Kurikulum;
+use App\Rules\TingkatValidate;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -42,6 +43,7 @@ class KelasController extends Controller
 
         $request->validate([
             'nama_kelas' => 'required',
+            'id_tingkat' => ['required', new TingkatValidate],
             'nip' => 'required',
         ],
         [

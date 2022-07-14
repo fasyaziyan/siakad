@@ -28,14 +28,14 @@
                 </div>
                 <div class="form-group">
                     <label>Nama Lengkap</label>
-                    <input class="form-control" autocomplete="off" name="nama_guru" value="{{ $guru->nama_guru}}">
+                    <input class="form-control @error('nama_guru') is-invalid @enderror" autocomplete="off" name="nama_guru" value="{{ $guru->nama_guru}}">
                     @error('nama_guru')
                     <h6 class="text-danger">{{ $message }}</h6>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label>Jenis Kelamin</label>
-                    <select class="form-control" name="jenis_kelamin">
+                    <select class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin">
                         <option disabled value>Pilih Jenis Kelamin</option>
                         <option value="Laki Laki" {{ $guru->jenis_kelamin == "Laki Laki" ? 'selected' : ''}}>Laki Laki
                         </option>
@@ -47,7 +47,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Tempat Lahir</label>
-                            <input class="form-control" autocomplete="off" name="tempat_lahir"
+                            <input class="form-control @error('tempat_lahir') is-invalid @enderror" autocomplete="off" name="tempat_lahir"
                                 value="{{ $guru->tempat_lahir }}">
                             @error('tempat_lahir')
                             <h6 class="text-danger">{{ $message }}</h6>
@@ -57,7 +57,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Tanggal Lahir</label>
-                            <input type="date" class="form-control" autocomplete="off" name="tanggal_lahir"
+                            <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" autocomplete="off" name="tanggal_lahir"
                                 value="{{ $guru->tanggal_lahir}}">
                             @error('tanggal_lahir')
                             <h6 class="text-danger">{{ $message }}</h6>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="form-group">
                     <label>Alamat</label>
-                    <textarea class="form-control" autocomplete="off" name="alamat"
+                    <textarea class="form-control @error('alamat') is-invalid @enderror" autocomplete="off" name="alamat"
                         value="{{ $guru->alamat }}">{{ $guru->alamat }}</textarea>
                     @error('alamat')
                     <h6 class="text-danger">{{ $message }}</h6>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="form-group">
                     <label>Telepon</label>
-                    <input class="form-control" autocomplete="off" name="telepon" value="{{ $guru->telepon }}">
+                    <input class="form-control @error('telepon') is-invalid @enderror" autocomplete="off" name="telepon" value="{{ $guru->telepon }}">
                     @error('telepon')
                     <h6 class="text-danger">{{ $message }}</h6>
                     @enderror
@@ -84,7 +84,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Agama</label>
-                            <input class="form-control" autocomplete="off" name="agama" value="{{ $guru->agama}}">
+                            <input class="form-control @error('agama') is-invalid @enderror" autocomplete="off" name="agama" value="{{ $guru->agama}}">
                             @error('agama')
                             <h6 class="text-danger">{{ $message }}</h6>
                             @enderror
@@ -93,7 +93,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Pendidikan</label>
-                            <input class="form-control" autocomplete="off" name="pendidikan"
+                            <input class="form-control @error('pendidikan') is-invalid @enderror" autocomplete="off" name="pendidikan"
                                 value="{{ $guru->pendidikan }}">
                             @error('pendidikan')
                             <h6 class="text-danger">{{ $message }}</h6>
@@ -103,7 +103,7 @@
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input class="form-control" autocomplete="off" name="email" value="{{ $guru->email }}">
+                    <input class="form-control @error('email') is-invalid @enderror" autocomplete="off" name="email" value="{{ $guru->email }}">
                     @error('email')
                     <h6 class="text-danger">{{ $message }}</h6>
                     @enderror

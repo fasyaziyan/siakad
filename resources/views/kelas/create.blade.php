@@ -41,6 +41,9 @@
                                 <option value="{{ $tingkat->id_tingkat }}" {{ old('id_tingkat') == $tingkat->id_tingkat ? 'selected' : ''}}>{{ $tingkat->nama_tingkat }}</option>
                                 @endforeach
                             </select>
+                            @error('id_tingkat')
+                            <h6 class="text-danger">{{ $message }}</h6>
+                            @enderror
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,7 @@ use Yajra\DataTables\DataTables;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Http\Request;
 
+
 class TingkatController extends Controller
 {
     public function index(Request $request)
