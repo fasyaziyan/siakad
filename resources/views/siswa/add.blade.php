@@ -125,6 +125,7 @@
                             @enderror
                         </div>
                     </div>
+                </div>
                     <div class="form-group">
                         <label>Foto</label>
                         <img class="preview-image mb-3 col-sm-3">
@@ -133,7 +134,6 @@
                         <h6 class="text-danger">{{ $message }}</h6>
                         @enderror
                     </div>
-                </div>
                 <button type="submit" class="btn btn-gradient-primary mr-2 float-right">Submit</button>
             </form>
         </div>

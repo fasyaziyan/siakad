@@ -8,6 +8,7 @@ use App\Models\Mapel;
 use App\Models\Kelas;
 use App\Models\Nilai;
 use App\Models\KKM;
+use App\Models\Rapot;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,7 @@ class SiswaController extends Controller
 {
     public function index(Request $request) {
         if ($request->ajax()) {
-            $data = Siswa::with('kelas.tingkat')->get();
+            $data = Siswa::with('kelas.tingkat')->orderBy('id_kelas', 'asc')->orderBy('nama', 'asc')->get();
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->rawColumns(['action'])
@@ -225,7 +226,8 @@ class SiswaController extends Controller
         $nisn = Auth::guard('siswa')->user()->nisn;
         $siswa = Siswa::find(Auth::guard('siswa')->user()->nisn);
         $kkm = Kkm::first()->set_kkm;
-        $nilai = Mapel::leftJoin('detnilai', 'mapel.id_mapel', '=', 'detnilai.id_mapel')->leftjoin('rapot', 'rapot.nisn', '=', 'detnilai.nisn')->where('mapel.id_kelas', $id_kelas)->where('detnilai.nisn', '=', $nisn)->where('detnilai.id_kuri', '=', $id_kuri)->get();
+        Rapot::updateOrCreate(['nisn' => $nisn, 'id_kelas' => $id_kelas, 'id_kuri' => $id_kuri]);
+        $nilai = Mapel::leftJoin('detnilai', 'mapel.id_mapel', '=', 'detnilai.id_mapel')->leftjoin('rapot', 'rapot.nisn', '=', 'detnilai.nisn')->where('mapel.id_kelas', $id_kelas)->where('detnilai.nisn', '=', $nisn)->where('detnilai.id_kuri', '=', $id_kuri)->where('rapot.nisn', '=', $nisn)->where('rapot.id_kuri', '=', $id_kuri)->where('rapot.id_kelas', '=', $id_kelas)->get();
 
         $jumlah = [];
         foreach ($nilai as $key => $value) {
@@ -240,7 +242,7 @@ class SiswaController extends Controller
         $siswa = Siswa::find(Auth::guard('siswa')->user()->nisn);
         $nisn = Siswa::where('nisn', $siswa->nisn)->value('nisn');
         $id_kelas = Siswa::where('nisn', $nisn)->value('id_kelas');
-        $nilai = Mapel::leftJoin('detnilai', 'mapel.id_mapel', '=', 'detnilai.id_mapel')->leftjoin('rapot', 'rapot.nisn', '=', 'detnilai.nisn')->where('mapel.id_kelas', '=', $id_kelas)->where('detnilai.nisn', '=', $nisn)->where('detnilai.id_kuri', '=', $id_kuri)->get();
+        $nilai = Mapel::leftJoin('detnilai', 'mapel.id_mapel', '=', 'detnilai.id_mapel')->leftjoin('rapot', 'rapot.nisn', '=', 'detnilai.nisn')->where('mapel.id_kelas', '=', $id_kelas)->where('detnilai.nisn', '=', $nisn)->where('detnilai.id_kuri', '=', $id_kuri)->where('rapot.nisn', '=', $nisn)->where('rapot.id_kuri', '=', $id_kuri)->where('rapot.id_kelas', '=', $id_kelas)->get();
         $no = 1;
         $jumlah = [];
         foreach ($nilai as $key => $value) {

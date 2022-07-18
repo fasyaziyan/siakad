@@ -32,7 +32,6 @@
             font-size: 15px;
             font-weight: bold;
         }
-
     </style>
 </head>
 
@@ -135,34 +134,6 @@
                         @else
                         <td align="center">D</td>
                         @endif
-                        </tr>
-                        @elseif($loop->iteration == 15)
-                        <tr style="background-color: #E1E77F;">
-                            <td align="center" style="font-weight: bold;">B</td>
-                            <td style="text-align: left; font-weight: bold;">MUATAN LOKAL</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td align="center" style="font-weight: bold; font-size : 12px;">{{ $no++ }}</td>
-                            <td style="text-align: left; font-weight: bold; font-size : 12px;">
-                                {{ $data->nama_mapel}}</td>
-                            <td class="tengah">{{ $kkm }}</td>
-                            <td class="tengah">{{ $data->nilai }}</td>
-                            @if ( $data->nilai < $kkm ) <td class="tengah">TIDAK TUNTAS</td>
-                                @else
-                                <td class="tengah">TUNTAS</td>
-                                @endif
-                                @if ($data->nilai >= 90 and $data->nilai <= 100) <td align="center">A</td>
-                                    @elseif($data->nilai >= 75)
-                                    <td align="center">B</td>
-                                    @elseif($data->nilai >= 70)
-                                    <td align="center">C</td>
-                                    @else
-                                    <td align="center">D</td>
-                                    @endif
                         </tr>
                         @else
                         <tr>

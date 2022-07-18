@@ -45,14 +45,14 @@ class WaliController extends Controller
         foreach ($mapel3 as $item => $value) {
             Nilai::updateOrCreate(['nisn' => $nisn, 'id_kelas' => $id_kelas, 'id_mapel' => $value, 'id_kuri' => $id_kuri]);
         }
-        $nilai = Mapel::leftJoin('detnilai', 'mapel.id_mapel', '=', 'detnilai.id_mapel')->leftjoin('rapot', 'rapot.nisn', '=', 'detnilai.nisn')->where('mapel.id_kelas', $id_kelas)->where('detnilai.nisn', '=', $nisn)->get();
+        Rapot::updateOrCreate(['nisn' => $nisn, 'id_kelas' => $id_kelas, 'id_kuri' => $id_kuri]);
+        $nilai = Mapel::leftJoin('detnilai', 'mapel.id_mapel', '=', 'detnilai.id_mapel')->leftjoin('rapot', 'rapot.nisn', '=', 'detnilai.nisn')->where('mapel.id_kelas', '=', $id_kelas)->where('detnilai.nisn', '=', $nisn)->where('detnilai.id_kuri', '=', $id_kuri)->where('rapot.nisn', '=', $nisn)->where('rapot.id_kuri', '=', $id_kuri)->where('rapot.id_kelas', '=', $id_kelas)->get();
         $jumlah = [];
         foreach ($nilai as $key => $value) {
             $jumlah[$key] = $value->nilai;
         }
         $total = array_sum($jumlah);
         $rata_rata = $total / count($jumlah);
-        Rapot::updateOrCreate(['nisn' => $nisn, 'id_kelas' => $id_kelas, 'id_kuri' => $id_kuri]);
         return view('wali.detail_rapot', compact('siswa', 'nilai', 'kkm', 'rata_rata', 'total'));
     }
 
@@ -66,7 +66,7 @@ class WaliController extends Controller
         $siswa = Siswa::find($nisn);
         $id_kelas = Siswa::where('nisn', $nisn)->value('id_kelas');
         $id_kuri = Kelas::where('id_kelas', $id_kelas)->value('id_kuri');
-        $nilai = Mapel::leftJoin('detnilai', 'mapel.id_mapel', '=', 'detnilai.id_mapel')->leftjoin('rapot', 'rapot.nisn', '=', 'detnilai.nisn')->where('mapel.id_kelas', '=', $id_kelas)->where('detnilai.nisn', '=', $nisn)->where('detnilai.id_kuri', '=', $id_kuri)->get();
+        $nilai = Mapel::leftJoin('detnilai', 'mapel.id_mapel', '=', 'detnilai.id_mapel')->leftjoin('rapot', 'rapot.nisn', '=', 'detnilai.nisn')->where('mapel.id_kelas', '=', $id_kelas)->where('detnilai.nisn', '=', $nisn)->where('detnilai.id_kuri', '=', $id_kuri)->where('rapot.nisn', '=', $nisn)->where('rapot.id_kuri', '=', $id_kuri)->where('rapot.id_kelas', '=', $id_kelas)->get();
         $no = 1;
         $jumlah = [];
         foreach ($nilai as $key => $value) {

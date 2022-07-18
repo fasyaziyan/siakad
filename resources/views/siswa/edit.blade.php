@@ -131,6 +131,7 @@
                             @enderror
                         </div>
                     </div>
+                </div>
                     <div class="form-group">
                         <label>Foto</label>
                         <input type="hidden" name="oldfoto" value="{{ $siswa->foto }}">
@@ -145,7 +146,6 @@
                         <h6 class="text-danger">{{ $message }}</h6>
                         @enderror
                     </div>
-                </div>
                 <button type="submit" class="btn btn-gradient-primary mr-2 float-right">Simpan</button>
             </form>
         </div>

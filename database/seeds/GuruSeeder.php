@@ -15,7 +15,7 @@ class GuruSeeder extends Seeder
      */
     public function run()
     {
-    	for($i = 1; $i <= 10; $i++){
+    	for($i = 1; $i <= 5; $i++){
             $faker = Faker::create('id_ID');
             $nama_guru = $faker->name;
             $tanggal_lahir = $faker->date('Y-m-d');

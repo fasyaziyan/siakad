@@ -64,14 +64,14 @@ class NilaiController extends Controller
         $siswa = Siswa::where('id_kelas', $mapel->id_kelas)->get();
         $jml = $siswa->count();
         // $detnilai = Nilai::rightJoin('siswa', 'siswa.nisn', '=', 'detnilai.nisn')->where('siswa.id_kelas' , $mapel->id_kelas)->get();
-        $detnilai = Siswa::leftJoin('detnilai', 'detnilai.nisn', '=', 'siswa.nisn')->leftjoin('mapel', 'detnilai.id_mapel', '=', 'mapel.id_mapel')->where('siswa.id_kelas' , $mapel->id_kelas)->where('detnilai.id_mapel', $mapel->id_mapel)->orderBy('siswa.nama', 'asc')->get();
-        // dd($detnilai);
+        $detnilai = Siswa::leftJoin('detnilai', 'detnilai.nisn', '=', 'siswa.nisn')->leftjoin('mapel', 'detnilai.id_mapel', '=', 'mapel.id_mapel')->where('siswa.id_kelas' , $mapel->id_kelas)->where('detnilai.id_mapel', $mapel->id_mapel)->where('detnilai.id_kuri', '=', $id_kuri->id_kuri)->orderBy('siswa.nama', 'asc')->get();
+        // dd($id_kuri);
         return view('guru_new.nilai', compact('mapel', 'siswa', 'jml', 'detnilai'));
     }
 
     public function show (Request $request){
         if ($request->ajax()) {
-            $data = Siswa::with('kelas.tingkat')->get();
+            $data = Siswa::with('kelas.tingkat')->orderBy('id_kelas', 'asc')->orderBy('nama', 'asc')->get();
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->rawColumns(['action'])
@@ -98,7 +98,8 @@ class NilaiController extends Controller
         foreach ($mapel3 as $item => $value) {
             Nilai::updateOrCreate(['nisn' => $nisn, 'id_kelas' => $id_kelas, 'id_mapel' => $value, 'id_kuri' => $id_kuri]);
         }
-        $nilai = Mapel::leftJoin('detnilai', 'mapel.id_mapel', '=', 'detnilai.id_mapel')->leftjoin('rapot', 'rapot.nisn', '=', 'detnilai.nisn')->where('mapel.id_kelas', $id_kelas)->where('detnilai.nisn', '=', $nisn)->get();
+        Rapot::updateOrCreate(['nisn' => $nisn, 'id_kelas' => $id_kelas, 'id_kuri' => $id_kuri]);
+        $nilai = Mapel::leftJoin('detnilai', 'mapel.id_mapel', '=', 'detnilai.id_mapel')->leftjoin('rapot', 'rapot.nisn', '=', 'detnilai.nisn')->where('mapel.id_kelas', '=', $id_kelas)->where('detnilai.nisn', '=', $nisn)->where('detnilai.id_kuri', '=', $id_kuri)->where('rapot.nisn', '=', $nisn)->where('rapot.id_kuri', '=', $id_kuri)->where('rapot.id_kelas', '=', $id_kelas)->get();
         // dd($nilai);
         $jumlah = [];
         foreach ($nilai as $key => $value) {

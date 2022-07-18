@@ -72,6 +72,29 @@
                 <label>Catatan Wali Kelas</label>
                 <textarea class="form-control" autocomplete="off" name="keterangan" value="{{ $data->keterangan }}" disabled>{{ $data->keterangan }}</textarea>
             </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Sakit</label>
+                        <input class="form-control" type="text" autocomplete="off" name="sakit"
+                            value="{{ $data->sakit }}" style="text-align: center" disabled>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Izin</label>
+                        <input class="form-control" type="text" autocomplete="off" name="izin"
+                            value="{{ $data->izin }}" style="text-align: center" disabled>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Alfa</label>
+                        <input class="form-control" type="text" autocomplete="off" name="alpa"
+                            value="{{ $data->alpa }}" style="text-align: center" disabled>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

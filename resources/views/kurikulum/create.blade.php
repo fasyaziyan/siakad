@@ -49,8 +49,8 @@
                           <label>Semester</label>
                           <select class="form-control" name="semester">
                             <option disabled selected>Pilih Semester</option>
-                            <option value="1" {{ old('semester') == "1" ? 'selected' : ''}}>Semester Ganjil (I)</option>
-                            <option value="2" {{ old('semseter') == "2" ? 'selected' : ''}}>Semester Genap (II)</option>
+                            <option value="Ganjil" {{ old('semester') == "Ganjil" ? 'selected' : ''}}>Semester Ganjil (I)</option>
+                            <option value="Genap" {{ old('semseter') == "Genap" ? 'selected' : ''}}>Semester Genap (II)</option>
                           </select>
                       </div>
                   </div>

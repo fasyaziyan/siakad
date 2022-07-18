@@ -52,9 +52,9 @@
                             <label>Semester</label>
                             <select class="form-control" name="semester">
                                 <option disabled selected>Pilih Semester</option>
-                                <option value="1" {{ $kurikulum->semester == "1" ? 'selected' : ''}}>Semester Ganjil (I)
+                                <option value="Ganjil" {{ $kurikulum->semester == "Ganjil" ? 'selected' : ''}}>Semester Ganjil (I)
                                 </option>
-                                <option value="2" {{ $kurikulum->semester == "2" ? 'selected' : ''}}>Semester Genap (II)
+                                <option value="Genap" {{ $kurikulum->semester == "Genap" ? 'selected' : ''}}>Semester Genap (II)
                                 </option>
                             </select>
                         </div>
