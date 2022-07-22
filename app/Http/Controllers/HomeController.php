@@ -44,7 +44,7 @@ class HomeController extends Controller
         $data_kelas = Kelas::get();
 
         $date = Carbon::now('Asia/Jakarta');
-        $date = $date->format('d-m-Y')." ".$date->format('H:i');
+        $date = $date->format('d-M-Y');
         return view('dashboard', compact('siswa', 'kelas', 'guru', 'mapel', 'list_kelas', 'siswa_kelas_count', 'data_kelas', 'date'));
     }
 
@@ -85,7 +85,7 @@ class HomeController extends Controller
 
     public function index_siswa(){
         $date = Carbon::now('Asia/Jakarta');
-        $date = $date->format('d-m-Y')." ".$date->format('H:i');
+        $date = $date->format('d-M-Y');
 
         //List Nama Mapel
         $id_kelas = Auth::guard('siswa')->user()->id_kelas;

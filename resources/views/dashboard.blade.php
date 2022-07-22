@@ -11,7 +11,7 @@
     <nav aria-label="breadcrumb">
         <div class="d-flex flex-row align-items-center">
             <i class="mdi mdi-av-timer icon-md text-danger"></i>
-            <h6 class="mb-0 ml-1" id="date_time"> {{ $date }}</h6>
+            <h6 class="mb-0 ml-1"> {{ $date }}</h6>
         </div>
     </nav>
 </div>
@@ -253,9 +253,4 @@
     });
 
 </script>
-<script>
-    setInterval(function () {
-        $('#date_time').load(' #date_time');
-    }, 60000);
-    </script>
 @endsection

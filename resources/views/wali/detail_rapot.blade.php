@@ -62,7 +62,11 @@
                         <td>{{ $data->id_mapel }}</td>
                         <td>{{ $data->nama_mapel}}</td>
                         <td style="text-align:center">{{ $kkm }}</td>
-                        <td style="text-align:center">{{ $data->nilai ?? ''}}</td>
+                        @if ($data->nilai == null)
+                        <td style="text-align: center; border: 2px solid red; background-color: #FFCECE"></td>
+                        @else
+                        <td style="text-align:center">{{ $data->nilai }}</td>
+                        @endif
                     </tr>
                     @endforeach
                     <tr>

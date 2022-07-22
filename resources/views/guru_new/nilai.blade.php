@@ -54,7 +54,11 @@
                     <input type="hidden" name="id_kuri[]" value="{{ $data->id_kuri }}">
                     <input type="hidden" name="id_kelas[]" value="{{ $data->id_kelas ?? '' }}">
                     <td style="font: 15px sans-serif;"><input type="hidden" name="nisn[]" value="{{ $data->nisn}}">{{ $data->nama}}</td>
-                    <td><input type="text" class="form-control" name="nilai[]" value="{{ $data->nilai ?? '' }}" autocomplete="off" style="text-align: center"></td>
+                    @if ($data->nilai == null)
+                    <td><input type="text" class="form-control" name="nilai[]" value="{{ '' }}" autocomplete="off" style="text-align: center; border: 1px solid red"></td>
+                    @else
+                    <td><input type="text" class="form-control" name="nilai[]" value="{{ $data->nilai }}" autocomplete="off" style="text-align: center;"></td>
+                    @endif
                 </tr>
                 @endforeach
             </table>

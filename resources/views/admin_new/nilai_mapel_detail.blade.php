@@ -54,7 +54,11 @@
                     <td style="text-align:center">{{ $loop->iteration }}</td>
                     <td>{{ $data->nisn }}</td>
                     <td>{{ $data->nama }}</td>
-                    <td style="text-align: center" width="10px">{{ $data->nilai }}</td>
+                    @if ($data->nilai == null)
+                    <td style="text-align: center; border: 2px solid red; background-color: #FFCECE" width="10px">{{ $data->nilai }}</td>
+                    @else
+                    <td style="text-align:center" width="10px">{{ $data->nilai }}</td>
+                    @endif
                 </tr>
                 @endforeach
             </table>

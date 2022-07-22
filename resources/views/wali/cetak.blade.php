@@ -142,7 +142,11 @@
                             <td style="text-align: left; font-weight: bold; font-size : 12px;">
                                 {{ $data->nama_mapel}}</td>
                             <td class="tengah">{{ $kkm }}</td>
+                            @if ($data->nilai == null)
+                            <td style="background-color: red" class="tengah"></td>
+                            @else
                             <td class="tengah">{{ $data->nilai }}</td>
+                            @endif
                             @if ( $data->nilai < $kkm ) <td class="tengah">TIDAK TUNTAS</td>
                                 @else
                                 <td class="tengah">TUNTAS</td>
