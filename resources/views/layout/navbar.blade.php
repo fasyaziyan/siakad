@@ -34,9 +34,11 @@
                     </div>
                 </a>
                 <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                    <a class="dropdown-item" href="#">
-                        <i class="mdi mdi-cached mr-2 text-success"></i> Activity Log </a>
+                    @if(Auth::guard('guru')->user())
+                    <a class="dropdown-item" href="{{ route('guru.change_password')}}">
+                        <i class="mdi mdi-cached mr-2 text-success"></i> Change Password </a>
                     <div class="dropdown-divider"></div>
+                    @endif
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();">
                         <i class="mdi mdi-logout mr-2 text-primary">

@@ -27,7 +27,7 @@
     {{-- <link rel="stylesheet" href="{{asset('sweet/sweetalert2.min.css')}}">
     <link rel="stylesheet" href="{{asset('sweet/animate.min.css')}}"> --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-    @stack('styles_livewire')
+    @livewireStyles
 </head>
 
 <body>
@@ -43,6 +43,7 @@
             </div>
         </div>
     </div>
+    @livewireScripts
     <script src="{{asset('vendors/js/vendor.bundle.base.js')}}"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
@@ -67,8 +68,6 @@
     {{-- <script src="{{asset('bootstrap/bootstrap.min.js')}}"></script> --}}
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    @yield('script')
-    @stack('script_livewire')
 </body>
 
 </html>

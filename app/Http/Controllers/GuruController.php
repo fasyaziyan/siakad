@@ -193,4 +193,7 @@ class GuruController extends Controller
         // dd($cek);
         return view('guru_new.raport');
     }
+    public function change_password(){
+        return view('guru_new.change_password');
+    }
 }

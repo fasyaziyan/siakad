@@ -54,6 +54,7 @@ Route::group(['middleware' => ['auth:user,siswa,guru','ceklevel:admin,siswa,guru
         Route::get('/edit/{nip}', 'GuruController@edit')->name('guru.edit');
         Route::post('/update/{nip}', 'GuruController@update')->name('guru.update');
         Route::post('/delete/{nip}', 'GuruController@destroy')->name('guru.destroy');
+        Route::get('/change_password', 'GuruController@change_password')->name('guru.change_password');
     });
     
     Route::prefix('mapel')->group(function () {
