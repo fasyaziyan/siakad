@@ -125,6 +125,8 @@ Route::group(['middleware' => ['auth:user,siswa,guru','ceklevel:admin,siswa,guru
         Route::get('/showmapel/{id_kelas}', 'NilaiController@showmapel')->name('nilai.showmapel');
         Route::get('/mapel/detail/{id_mapel}', 'NilaiController@showmapel_detail')->name('nilai.showmapel_detail');
         Route::post('/setkkm', 'NilaiController@setkkm')->name('nilai.setkkm');
+        Route::get('/jadwal', 'NilaiController@jadwal')->name('nilai.jadwal');
+        Route::post('/jadwal', 'NilaiController@store_jadwal')->name('jadwal.store');
     });
     Route::prefix('wali')->group(function () {
         Route::get('/', 'WaliController@index_rapot')->name('wali.index_rapot');

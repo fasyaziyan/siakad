@@ -139,6 +139,9 @@
                     <li class="nav-item"> <a
                             class="nav-link @if (Request::segment(1)=='nilai' && Request::segment(2)=='show') nav-link active @endif"
                             href="{{ route('nilai.show2') }}">Rapot Siswa</a></li>
+                    <li class="nav-item"> <a
+                            class="nav-link @if (Request::segment(1)=='nilai' && Request::segment(2)=='jadwal') nav-link active @endif"
+                            href="{{ route('nilai.jadwal') }}">Jadwal Input Nilai</a></li>
                 </ul>
             </div>
         </li>

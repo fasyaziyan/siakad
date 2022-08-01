@@ -7,6 +7,7 @@ use App\Models\Siswa;
 use App\Models\Kelas;
 use App\Models\Rapot;
 use App\Models\KKM;
+use App\Models\Jadwal;
 use Yajra\DataTables\DataTables;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Http\Request;
@@ -151,5 +152,29 @@ class NilaiController extends Controller
         $kkm->set_kkm = $request->set_kkm;
         $kkm->update();
         return redirect()->back();
+    }
+
+    public function jadwal (Request $request){
+        if ($request->ajax()) {
+            $data = Jadwal::get();
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        return view('admin_new.jadwal');
+    }
+
+    public function store_jadwal (Request $request) {
+        $jadwal = new Jadwal;
+        $jadwal->judul = $request->judul;
+        $jadwal->keterangan = $request->keterangan;
+        $jadwal->tanggal_mulai = $request->tanggal_mulai;
+        $jadwal->tanggal_selesai = $request->tanggal_selesai;
+        $jadwal->status = 'Disabled';
+        $jadwal->save();
+        
+
+        return redirect()->route('nilai.jadwal');
     }
 }
