@@ -11,6 +11,7 @@ use App\Models\Jadwal;
 use Yajra\DataTables\DataTables;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Exists;
 
 class NilaiController extends Controller
 {
@@ -162,7 +163,13 @@ class NilaiController extends Controller
                     ->rawColumns(['action'])
                     ->make(true);
         }
-        return view('admin_new.jadwal');
+        $jadwal = Jadwal::where('status', 'Active')->get();
+        if ($jadwal->count() == !0) {
+            $jadwal = true;
+        } else {
+            $jadwal = false;
+        }
+        return view('admin_new.jadwal', compact('jadwal'));
     }
 
     public function store_jadwal (Request $request) {
@@ -171,7 +178,7 @@ class NilaiController extends Controller
         $jadwal->keterangan = $request->keterangan;
         $jadwal->tanggal_mulai = $request->tanggal_mulai;
         $jadwal->tanggal_selesai = $request->tanggal_selesai;
-        $jadwal->status = 'Disabled';
+        $jadwal->status = 'Inactive';
         $jadwal->save();
         
         return redirect()->route('nilai.jadwal');
@@ -179,7 +186,11 @@ class NilaiController extends Controller
 
     public function update_jadwal ($id){
         $jadwal = Jadwal::find($id);
-        $jadwal->status = 'Disabled';
+        if ($jadwal->status == 'Inactive') {
+            $jadwal->status = 'Active';
+        } else {
+            $jadwal->status = 'Disabled';
+        }
         $jadwal->update();
         return ;
     }

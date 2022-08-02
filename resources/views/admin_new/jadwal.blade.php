@@ -94,13 +94,20 @@
                                                 <a href="#" class="dropdown-item update" data-id="${row.id}">Ubah Status</a>
                                             </div>
                                     </div>`;
-                        } else {
+                        }if (row.status == 'Inactive') {
                             return `<div class="dropdown">
-                                        <button class="btn btn-danger btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Disabled </button>
+                                        <button class="btn btn-warning btn-sm dropdown-toggle" @if($jadwal == true) Disabled @endif type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Inactive </button>
                                             <div class="dropdown-menu">
-                                                <a href="#" class="dropdown-item delete" data-id="${row.id}"">Hapus</a>
+                                                <a href="#" class="dropdown-item update" data-id="${row.id}">Ubah Status</a>
                                             </div>
                                     </div>`;
+                        }else {
+                            return `<div class="dropdown">
+                                        <button class="btn btn-danger btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Disabled </button>
+                                             <div class="dropdown-menu">
+                                                <a href="#" class="dropdown-item delete" data-id="${row.id}"">Hapus</a>
+                                            </div>
+                                     </div>`;
                         }
                     },
                     className: 'text-center'
