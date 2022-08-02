@@ -181,7 +181,7 @@ class NilaiController extends Controller
         $jadwal->status = 'Inactive';
         $jadwal->save();
         
-        return redirect()->route('nilai.jadwal');
+        return redirect()->route('nilai.jadwal')->with('success', 'Jadwal berhasil ditambahkan');
     }
 
     public function update_jadwal ($id){
