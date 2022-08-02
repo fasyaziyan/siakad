@@ -5,6 +5,7 @@ use App\Models\Guru;
 use App\Models\Mapel;
 use App\Models\Kelas;
 use App\Models\Detail_guru;
+use App\Models\Jadwal;
 use App\Models\Siswa;
 use App\Models\Nilai;
 use Yajra\DataTables\DataTables;
@@ -182,6 +183,7 @@ class GuruController extends Controller
     }
     public function raport (Request $request){
         $nip = Auth::guard('guru')->user()->nip;
+        $jadwal = Jadwal::where('status', 'Active')->get();
         if ($request->ajax()) {
             $data = Mapel::where('nip', $nip)->with('kelas.tingkat')->orderBy('id_kelas', 'asc')->get();
             return Datatables::of($data)
@@ -191,7 +193,7 @@ class GuruController extends Controller
         }
         // $cek = Kelas::where('nip', $nip)->exists();
         // dd($cek);
-        return view('guru_new.raport');
+        return view('guru_new.raport', compact('jadwal'));
     }
     public function change_password(){
         return view('guru_new.change_password');

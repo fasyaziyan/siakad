@@ -6,6 +6,7 @@ use App\Models\Kelas;
 use App\Models\Guru;
 use App\Models\Mapel;
 use App\Models\Tingkat;
+use App\Models\Jadwal;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +46,9 @@ class HomeController extends Controller
 
         $date = Carbon::now('Asia/Jakarta');
         $date = $date->format('d-M-Y');
-        return view('dashboard', compact('siswa', 'kelas', 'guru', 'mapel', 'list_kelas', 'siswa_kelas_count', 'data_kelas', 'date'));
+
+        $jadwal = Jadwal::where('status', 'Active')->first();
+        return view('dashboard', compact('siswa', 'kelas', 'guru', 'mapel', 'list_kelas', 'siswa_kelas_count', 'data_kelas', 'date', 'jadwal'));
     }
 
     public function peringkat (Request $request){

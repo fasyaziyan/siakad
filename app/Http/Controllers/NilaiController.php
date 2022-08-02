@@ -174,7 +174,19 @@ class NilaiController extends Controller
         $jadwal->status = 'Disabled';
         $jadwal->save();
         
-
         return redirect()->route('nilai.jadwal');
+    }
+
+    public function update_jadwal ($id){
+        $jadwal = Jadwal::find($id);
+        $jadwal->status = 'Disabled';
+        $jadwal->update();
+        return ;
+    }
+
+    public function delete_jadwal ($id){
+        $jadwal = Jadwal::find($id);
+        $jadwal->delete();
+        return ;
     }
 }

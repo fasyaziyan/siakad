@@ -40,11 +40,11 @@
             <table class="display compact cell-border" id="table">
                 <thead>
                     <tr>
-                        <th style="text-align: center;" width="30px"> No </th>
+                        <th style="text-align: center;"> No </th>
                         <th style="text-align: center;"> Judul </th>
                         <th style="text-align: center;"> Keterangan </th>
-                        <th> Tanggal Mulai </th>
-                        <th> Tanggal Selesai </th>
+                        <th style="text-align: center"> Tanggal Mulai </th>
+                        <th style="text-align: center"> Tanggal Selesai </th>
                         <th style="text-align: center;"> Status </th>
                     </tr>
                 </thead>
@@ -77,18 +77,114 @@
                 },
                 {
                     data: 'tanggal_mulai',
-                    name: 'tanggal_mulai'
+                    name: 'tanggal_mulai',
+                    className: 'text-center'
                 },
                 {
                     data: 'tanggal_selesai',
-                    name: 'tanggal_selesai'
+                    name: 'tanggal_selesai',
+                    className: 'text-center'
                 },
                 {
-                    data: 'status',
-                    name: 'status'
+                    render: function (data, type, row) {
+                        if (row.status == 'Active') {
+                            return `<div class="dropdown">
+                                        <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Active </button>
+                                            <div class="dropdown-menu">
+                                                <a href="#" class="dropdown-item update" data-id="${row.id}">Ubah Status</a>
+                                            </div>
+                                    </div>`;
+                        } else {
+                            return `<div class="dropdown">
+                                        <button class="btn btn-danger btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Disabled </button>
+                                            <div class="dropdown-menu">
+                                                <a href="#" class="dropdown-item delete" data-id="${row.id}"">Hapus</a>
+                                            </div>
+                                    </div>`;
+                        }
+                    },
+                    className: 'text-center'
                 },
             ]
         });
+    });
+
+</script>
+<script>
+    $(document).on('click', '.update', function () {
+        var id = $(this).attr('data-id');
+        Swal.fire({
+            title: 'Apakah Anda Yakin Ingin Mengubah Status?',
+            text: "Data yang diubah tidak dapat dikembalikan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Ubah!'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: "{{ route('jadwal.update', ':id') }}".replace(
+                        ':id',
+                        id),
+                    type: "POST",
+                    data: {
+                        '_token': "{{ csrf_token() }}",
+                        '_method': 'POST'
+                    },
+                    success: function (data) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Data Berhasil Diubah',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1500);
+                    }
+                });
+            }
+        })
+    });
+
+</script>
+<script>
+    $(document).on('click', '.delete', function () {
+        var id = $(this).attr('data-id');
+        Swal.fire({
+            title: 'Apakah Anda Yakin?',
+            text: "Data yang dihapus tidak dapat dikembalikan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Hapus!'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: "{{ route('jadwal.delete', ':id') }}".replace(
+                        ':id',
+                        id),
+                    type: "POST",
+                    data: {
+                        '_token': "{{ csrf_token() }}",
+                        '_method': 'POST'
+                    },
+                    success: function (data) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Data Berhasil Dihapus',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1500);
+                    }
+                });
+            }
+        })
     });
 
 </script>

@@ -12,6 +12,7 @@
 <div class="grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
+
             <table class="display cell-border comapct" id="table">
                 <thead>
                     <tr>
@@ -59,9 +60,12 @@
                 orderable: false,
                 render: function (data, type, row) {
                     return `
-                        <a href="{{ route('nilai.show', ':id_mapel') }}"
-                            class='btn btn-outline-info btn-icon-text btn-sm'> Input Nilai <i
-                                class="mdi mdi-information btn-icon-append"></i> </a>
+                    @if( $jadwal->count() == !0 )
+                    <a href="{{ route('nilai.show', ':id_mapel') }}"
+                        class='btn btn-outline-info btn-icon-text btn-sm'> Input Nilai <i class="mdi mdi-information btn-icon-append"></i> </a>
+                    @else
+                    <button type="button" class="btn btn-secondary" disabled>Input Nilai</button>
+                    @endif
                     `.replace(':id_mapel', row.id_mapel);
                 }
             }]

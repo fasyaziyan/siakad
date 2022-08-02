@@ -33,6 +33,26 @@
         </div>
     </div>
 </div>
+@if (Auth::guard('guru')->check())
+@if ($jadwal == !null)
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card grid-margin" style="background-color: rgb(221, 247, 128);">
+            <div class="card-body" style="padding: 20px;">
+                <div class="d-lg-flex justify-content-between align-items-center">
+                    <div>
+                        <h4 style="color: #075fa5">{{ $jadwal->judul }}</h4>
+                        <h5>{{ $jadwal->keterangan }}</h5>
+                        <h5>Tanggal Mulai : {{ $jadwal->tanggal_mulai}}</h5>
+                        <h5>Tanggal Selesai : {{ $jadwal->tanggal_selesai }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+@endif
 <div class="row">
     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
         <div class="card card-statistics card1">

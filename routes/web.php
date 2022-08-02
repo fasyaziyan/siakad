@@ -127,6 +127,8 @@ Route::group(['middleware' => ['auth:user,siswa,guru','ceklevel:admin,siswa,guru
         Route::post('/setkkm', 'NilaiController@setkkm')->name('nilai.setkkm');
         Route::get('/jadwal', 'NilaiController@jadwal')->name('nilai.jadwal');
         Route::post('/jadwal', 'NilaiController@store_jadwal')->name('jadwal.store');
+        Route::post('/jadwal/update/{id}', 'NilaiController@update_jadwal')->name('jadwal.update');
+        Route::post('/jadwal/delete/{id}', 'NilaiController@delete_jadwal')->name('jadwal.delete');
     });
     Route::prefix('wali')->group(function () {
         Route::get('/', 'WaliController@index_rapot')->name('wali.index_rapot');
