@@ -49,7 +49,11 @@ class GuruChangePassword extends Component
         $guru->password = Hash::make($this->newPassword);
         $guru->update();
 
-
-        return redirect()->route('dashboard')->with('success', 'Data Berhasil Diubah');
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title' => 'Berhasil',
+            'text' => 'Password berhasil diubah',
+            'icon' => 'success',
+            'timer' => 2000,
+        ]);
     }
 }

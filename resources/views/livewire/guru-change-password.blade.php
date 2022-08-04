@@ -22,3 +22,18 @@
     </div>
     <button wire:click="changePassword" type="submit" class="btn btn-gradient-primary float-right">Submit</button>
 </div>
+@section('script')
+    <script>
+        window.addEventListener('swal:modal', event => {
+            Swal.fire({
+                title: event.detail.title,
+                text: event.detail.text,
+                icon: event.detail.icon,
+                showConfirmButton: false
+            })
+            setTimeout(function () {
+                window.location.reload();
+            }, event.detail.timer);
+        });
+    </script>
+@endsection
