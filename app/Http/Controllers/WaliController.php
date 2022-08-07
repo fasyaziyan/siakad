@@ -8,6 +8,7 @@ use App\Models\KKM;
 use App\Models\Mapel;
 use App\Models\Nilai;
 use App\Models\Rapot;
+use App\Models\Jadwal;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Auth;
 
@@ -53,7 +54,8 @@ class WaliController extends Controller
         }
         $total = array_sum($jumlah);
         $rata_rata = $total / count($jumlah);
-        return view('wali.detail_rapot', compact('siswa', 'nilai', 'kkm', 'rata_rata', 'total'));
+        $jadwal = Jadwal::where('status', 'Active')->get();
+        return view('wali.detail_rapot', compact('siswa', 'nilai', 'kkm', 'rata_rata', 'total', 'jadwal'));
     }
 
     public function set_catatan (Request $request)

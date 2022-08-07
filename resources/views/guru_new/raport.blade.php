@@ -8,11 +8,14 @@
         </span> Daftar Mata Pelajaran
     </h3>
 </div>
-
+@if( $jadwal->count() == 0 )
+<div class="alert alert-danger" role="alert">
+    <i class="mdi mdi-alert-circle"></i> Jadwal Input Nilai Belum Ditentukan Oleh Admin
+  </div>
+@endif
 <div class="grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-
             <table class="display cell-border comapct" id="table">
                 <thead>
                     <tr>

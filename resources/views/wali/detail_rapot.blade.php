@@ -18,6 +18,11 @@
         </span> Detail Raport Siswa
     </h3>
 </div>
+@if( $jadwal->count() == 0 )
+<div class="alert alert-danger" role="alert">
+    <i class="mdi mdi-alert-circle"></i> Jadwal Input Raport Belum Ditentukan Oleh Admin
+  </div>
+@endif
     <div class="grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -106,7 +111,11 @@
                         </div>
                     </div>
                 </div>
+                @if( $jadwal->count() == !0 )
                 <a type="button" class="btn btn-primary btn-icon-text float-right simpan_ket">Simpan</a>
+                @else
+                <button type="button" class="btn btn-secondary btn-icon-text float-right" disabled>Simpan</button>
+                @endif
                 <a href="{{ route('wali.cetak', $siswa->nisn) }}" type="button"
                     class="btn btn-success btn-icon-text float-right cetak" style="margin-right: 10px"> Cetak <i
                         class="mdi mdi-printer btn-icon-append"></i>
