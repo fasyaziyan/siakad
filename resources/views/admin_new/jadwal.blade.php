@@ -15,7 +15,7 @@
                 @csrf
                 <div class="form-group">
                     <label>Judul</label>
-                    <input type="text" class="form-control" name="judul" autocomplete="off">
+                    <input class="form-control" type="text" name="judul" autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label>Keterangan</label>
@@ -24,9 +24,9 @@
                 <div class="form-group">
                     <label>Tanggal</label>
                     <div class="input-group input-daterange d-flex align-items-center">
-                        <input type="date" class="form-control" name="tanggal_mulai">
+                        <input type="text" class="form-control timepicker" name="tanggal_mulai" autocomplete="off">
                         <div class="input-group-addon mx-2">Sampai</div>
-                        <input type="date" class="form-control" name="tanggal_selesai">
+                        <input type="text" class="form-control timepicker" name="tanggal_selesai" autocomplete="off">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-gradient-primary mr-2">Simpan</button>
@@ -215,4 +215,9 @@
 
 </script>
 @endif
+<script>
+    $(document).ready(function() {
+        $('.timepicker').datetimepicker();
+        });
+</script>
 @endsection

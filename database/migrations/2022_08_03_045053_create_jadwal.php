@@ -17,8 +17,8 @@ class CreateJadwal extends Migration
             $table->id();
             $table->string('judul');
             $table->string('keterangan')->nullable();
-            $table->string('tanggal_mulai');
-            $table->string('tanggal_selesai');
+            $table->dateTime('tanggal_mulai');
+            $table->dateTime('tanggal_selesai');
             $table->string('status');
             $table->timestamps();
         });

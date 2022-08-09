@@ -12,6 +12,7 @@ use Yajra\DataTables\DataTables;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Exists;
+use Illuminate\Support\Carbon;
 
 class NilaiController extends Controller
 {
@@ -169,6 +170,14 @@ class NilaiController extends Controller
         } else {
             $jadwal = false;
         }
+        $jadwall = Jadwal::where('status', 'Inactive')->first();
+        $current = Carbon::now('Asia/Jakarta')->format('Y-m-d H:i:s');
+        if ($jadwall->tanggal_mulai >= $current ) {
+            $jadwal1 = 'Active';
+        } else {
+            $jadwal1 = false;
+        }
+        dd($jadwal1, $current, $jadwall->tanggal_mulai, $jadwall->tanggal_selesai);
         return view('admin_new.jadwal', compact('jadwal'));
     }
 
@@ -192,6 +201,7 @@ class NilaiController extends Controller
             $jadwal->status = 'Disabled';
         }
         $jadwal->update();
+
         return ;
     }
 

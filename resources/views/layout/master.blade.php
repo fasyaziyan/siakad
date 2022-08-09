@@ -27,6 +27,7 @@
     {{-- <link rel="stylesheet" href="{{asset('sweet/sweetalert2.min.css')}}">
     <link rel="stylesheet" href="{{asset('sweet/animate.min.css')}}"> --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('datetimepicker/jquery.datetimepicker.css')}}" >
     @livewireStyles
 </head>
 
@@ -68,6 +69,7 @@
     {{-- <script src="{{asset('bootstrap/bootstrap.min.js')}}"></script> --}}
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{asset('datetimepicker/jquery.datetimepicker.full.min.js')}}"></script>
     @yield('script')
 </body>
 
