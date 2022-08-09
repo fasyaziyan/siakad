@@ -34,17 +34,19 @@
     </div>
 </div>
 @if (Auth::guard('guru')->check())
-@if ($jadwal == !null)
+@if ($jadwal->count() == !0)
 <div class="row">
     <div class="col-sm-12">
         <div class="card grid-margin" style="background-color: rgb(221, 247, 128);">
             <div class="card-body" style="padding: 20px;">
                 <div class="d-lg-flex justify-content-between align-items-center">
                     <div>
-                        <h4 style="color: #075fa5">{{ $jadwal->judul }}</h4>
-                        <h5>{{ $jadwal->keterangan }}</h5>
-                        <h5>Tanggal Mulai : {{ $jadwal->tanggal_mulai}}</h5>
-                        <h5>Tanggal Selesai : {{ $jadwal->tanggal_selesai }}</h5>
+                        @foreach ($jadwal as $data)
+                        <h4 style="color: #075fa5">{{ $data->judul }}</h4>
+                        <h5>{{ $data->keterangan }}</h5>
+                        <h5>Tanggal Mulai : {{ $data->tanggal_mulai}}</h5>
+                        <h5>Tanggal Selesai : {{ $data->tanggal_selesai }}</h5>
+                        @endforeach
                     </div>
                 </div>
             </div>

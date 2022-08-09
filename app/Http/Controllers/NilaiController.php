@@ -165,19 +165,6 @@ class NilaiController extends Controller
                     ->make(true);
         }
         $jadwal = Jadwal::where('status', 'Active')->get();
-        if ($jadwal->count() == !0) {
-            $jadwal = true;
-        } else {
-            $jadwal = false;
-        }
-        $jadwall = Jadwal::where('status', 'Inactive')->first();
-        $current = Carbon::now('Asia/Jakarta')->format('Y-m-d H:i:s');
-        if ($jadwall->tanggal_mulai >= $current ) {
-            $jadwal1 = 'Active';
-        } else {
-            $jadwal1 = false;
-        }
-        dd($jadwal1, $current, $jadwall->tanggal_mulai, $jadwall->tanggal_selesai);
         return view('admin_new.jadwal', compact('jadwal'));
     }
 
@@ -210,4 +197,5 @@ class NilaiController extends Controller
         $jadwal->delete();
         return ;
     }
+    
 }

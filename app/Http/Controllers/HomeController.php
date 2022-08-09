@@ -47,7 +47,7 @@ class HomeController extends Controller
         $date = Carbon::now('Asia/Jakarta');
         $date = $date->format('d-M-Y');
 
-        $jadwal = Jadwal::where('status', 'Active')->first();
+        $jadwal = Jadwal::where('status', 'Active')->get();
         return view('dashboard', compact('siswa', 'kelas', 'guru', 'mapel', 'list_kelas', 'siswa_kelas_count', 'data_kelas', 'date', 'jadwal'));
     }
 
